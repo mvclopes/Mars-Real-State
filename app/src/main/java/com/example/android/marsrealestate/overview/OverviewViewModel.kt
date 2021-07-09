@@ -45,6 +45,11 @@ class OverviewViewModel : ViewModel() {
     val properties : LiveData<List<MarsProperty>>
         get() = _properties
 
+    private var _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
+
+    val navigateToSelectedProperty : LiveData<MarsProperty>
+        get() = _navigateToSelectedProperty
+
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
      */
@@ -67,5 +72,13 @@ class OverviewViewModel : ViewModel() {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun displayPropertyDetails(marsProperty: MarsProperty){
+        _navigateToSelectedProperty.value = marsProperty
+    }
+
+    fun displayPropertyDetailsComplete(){
+        _navigateToSelectedProperty.value = null
     }
 }
